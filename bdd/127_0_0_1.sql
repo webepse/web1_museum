@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 01 juin 2022 à 10:00
+-- Généré le : ven. 03 juin 2022 à 13:47
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -84,13 +84,20 @@ DROP TABLE IF EXISTS `works`;
 CREATE TABLE IF NOT EXISTS `works` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
-  `year` year(4) NOT NULL,
+  `year` int(4) NOT NULL,
   `description` text NOT NULL,
   `cover` varchar(255) NOT NULL,
   `id_author` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_author` (`id_author`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `works`
+--
+
+INSERT INTO `works` (`id`, `title`, `year`, `description`, `cover`, `id_author`) VALUES
+(1, 'test', 2022, 'test', 'test.jpg', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

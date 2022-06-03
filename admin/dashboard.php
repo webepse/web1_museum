@@ -30,31 +30,46 @@
     <?php
         include("partials/header.php");
     ?>
-    <div class="container">
-        <h1>Tableau de bord</h1>
-        
-        <div class="row">
-            <div class="col-md-3 m-3 bg-primary text-center text-white">
-                <h2>Works</h2>
-                <?php
-                    $works = $bdd->query("SELECT * FROM works");
-                    $nbWorks = $works->rowCount();
-                    $works->closeCursor();
-                ?>
-                <h3><?= $nbWorks ?></h3>
+    <main>
+        <div class="container">
+            <h1>Tableau de bord</h1>
+            
+            <div class="row">
+                <div class="col-md-3 m-3 bg-primary text-center text-white">
+                    <h2>Works</h2>
+                    <?php
+                        $works = $bdd->query("SELECT * FROM works");
+                        $nbWorks = $works->rowCount();
+                        $works->closeCursor();
+                    ?>
+                    <h3><?= $nbWorks ?></h3>
+                </div>
+                <div class="col-md-3 m-3 bg-success text-center text-white">
+                    <h2>Author</h2>
+                    <?php
+                        $authors = $bdd->query("SELECT * FROM author");
+                        $nbAuthors = $authors->rowCount();
+                        $authors->closeCursor();
+                    ?>
+                    <h3><?= $nbAuthors ?></h3>
+                </div>
+                <div class="col-md-3 m-3 bg-warning text-center text-white">
+                    <h2>Images</h2>
+                    <?php 
+                        $images = $bdd->query("SELECT * FROM images");
+                        $nbImages = $images->rowCount();
+                        $images->closeCursor();
+                    ?>
+                    <h3><?= $nbImages ?></h3>
+                </div>
+
             </div>
-            <div class="col-md-3 m-3 bg-success text-center text-white">
-                <h2>Author</h2>
-                <h3>1</h3>
-            </div>
-            <div class="col-md-3 m-3 bg-warning text-center text-white">
-                <h2>Images</h2>
-                <h3>1</h3>
-            </div>
+
 
         </div>
-
-
-    </div>
+    </main>
+    <?php
+        include("partials/footer.php");
+    ?>
 </body>
 </html>
