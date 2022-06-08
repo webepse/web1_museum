@@ -54,7 +54,7 @@
         $fichier = basename($_FILES['cover']['name']);
         $taille_maxi = 200000;
         $taille = filesize($_FILES['cover']['tmp_name']);
-        $extensions = array('.png', '.gif', '.jpg', '.jpeg');
+        $extensions = ['.png', '.gif', '.jpg', '.jpeg'];
         $extension = strrchr($_FILES['cover']['name'], '.');
         if(!in_array($extension, $extensions)) 
         {
@@ -74,13 +74,25 @@
             $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier); 
             $fichiercplt = rand().$fichier;
 
+            // ../images/12354969monimage.jpg
             if(move_uploaded_file($_FILES['cover']['tmp_name'], $dossier . $fichiercplt)) 
             {
-                echo 'Upload effectué avec succès !';
+               // tout est ok, insertion dans la bdd
+               require "../connexion.php";
+               $insert = $bdd->prepare("INSERT INTO works(title,year,description,cover,id_author) VALUES(:titre,:annee,:descri,:couv,:auteur)");
+               $insert->execute([
+                   ":titre"=>$title,
+                   ":annee"=>$year,
+                   ":descri"=>$description,
+                   ":couv"=>$fichiercplt,
+                   ":auteur"=>$author
+               ]);
+               $insert->closeCursor();
+               header("LOCATION:works.php?add=success");
             }
             else 
             {
-                echo 'Echec de l\'upload !';
+                header("LOCATION:worksAdd.php?upload=echec");
             }
         }
         else

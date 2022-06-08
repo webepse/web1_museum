@@ -41,13 +41,15 @@
                         $works = $bdd->query("SELECT * FROM works");
                         while($donWorks = $works->fetch())
                         {
-                            echo "<td>".$donWorks['id']."</td>";
-                            echo "<td>".$donWorks['title']."</td>";
-                            echo "<td>".$donWorks['year']."</td>";
-                            echo "<td>";
-                                echo "<a href='#' class='btn btn-warning mx-2'>Modifier</a>";
-                                echo "<a href='#' class='btn btn-danger mx-2'>Supprimer</a>";
-                            echo "</td>";
+                            echo "<tr>";
+                                echo "<td>".$donWorks['id']."</td>";
+                                echo "<td>".$donWorks['title']."</td>";
+                                echo "<td>".$donWorks['year']."</td>";
+                                echo "<td>";
+                                    echo "<a href='#' class='btn btn-warning mx-2'>Modifier</a>";
+                                    echo "<a href='#' class='btn btn-danger mx-2'>Supprimer</a>";
+                                echo "</td>";
+                            echo "</tr>";    
                         }
                         $works->closeCursor();
                     ?>
