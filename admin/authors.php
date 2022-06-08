@@ -26,7 +26,7 @@
     <main>
         <div class="container">
             <h1>Authors</h1>
-            <a href="AuthorsAdd.php" class='btn btn-success'>Ajouter</a>
+            <a href="authorsAdd.php" class='btn btn-success'>Ajouter</a>
             <table class="table table-hover">
                 <thead>
                     <tr>
