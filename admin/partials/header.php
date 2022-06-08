@@ -12,6 +12,9 @@
         <li class="nav-item">
           <a class="nav-link" href="works.php">Works</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="authors.php">Authors</a>
+        </li>
       </ul>
       <ul class='navbar-nav ms-auto'>
         <li><a href="dashboard.php?deco=ok" class="nav-link">Déconnexion</a></li>
