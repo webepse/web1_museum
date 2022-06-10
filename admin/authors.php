@@ -48,7 +48,7 @@
                                 echo "<td>".$donAuthors['lastname']."</td>";
                                 echo "<td>".$donAuthors['birthdate']."</td>";
                                 echo "<td>";
-                                    echo "<a href='#' class='btn btn-warning mx-2'>Modifier</a>";
+                                    echo "<a href='authorsUpdate.php?id=".$donAuthors['id']."' class='btn btn-warning mx-2'>Modifier</a>";
                                     echo "<a href='#' class='btn btn-danger mx-2'>Supprimer</a>";
                                 echo "</td>";
                             echo "</tr>";    
