@@ -4,6 +4,8 @@
     {
         header("LOCATION:index.php");
     }
+
+    require "../connexion.php";
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -44,7 +46,14 @@
                 <div class="my-3">
                     <label for="author">Author: </label>
                     <select name="author" id="author" class="form-control">
-                        <option value="1">Léonardo Da Vinci</option>
+                        <?php
+                            $authors = $bdd->query("SELECT * FROM author");
+                            while($donAuthors = $authors->fetch())
+                            {
+                                echo '<option value="'.$donAuthors['id'].'">'.$donAuthors['firstname'].' '.$donAuthors['lastname'].'</option>';
+                            }
+                            $authors->closeCursor();
+                        ?>
                     </select>
                 </div>
                 <div class="my-3">

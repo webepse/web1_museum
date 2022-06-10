@@ -33,18 +33,24 @@
                         <th>ID</th>
                         <th>Title</th>
                         <th>Year</th>
+                        <th>Author</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                        $works = $bdd->query("SELECT * FROM works");
+                        $works = $bdd->query("SELECT works.id AS wid, works.title AS wtitle, works.year AS wyear, author.id AS aid, author.lastname AS alast, author.firstname AS afirst FROM works INNER JOIN author ON works.id_author = author.id");
                         while($donWorks = $works->fetch())
                         {
                             echo "<tr>";
-                                echo "<td>".$donWorks['id']."</td>";
-                                echo "<td>".$donWorks['title']."</td>";
-                                echo "<td>".$donWorks['year']."</td>";
+                                echo "<td>".$donWorks['wid']."</td>";
+                                echo "<td>".$donWorks['wtitle']."</td>";
+                                echo "<td>".$donWorks['wyear']."</td>";
+                                // $req = $bdd->prepare("SELECT * FROM author WHERE id=?");
+                                // $req->execute([$donWorks['id_author']]);
+                                // $don = $req->fetch();
+                                // echo "<td>".$don['firstname']." ".$don['lastname']."</td>";
+                                echo "<td>".$donWorks['afirst']." ".$donWorks['alast']."</td>";
                                 echo "<td>";
                                     echo "<a href='#' class='btn btn-warning mx-2'>Modifier</a>";
                                     echo "<a href='#' class='btn btn-danger mx-2'>Supprimer</a>";
