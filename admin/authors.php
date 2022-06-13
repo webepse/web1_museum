@@ -7,6 +7,37 @@
 
     require "../connexion.php";
 
+    if(isset($_GET['delete']))
+    {
+        // protection
+        $id = htmlspecialchars($_GET['delete']);
+
+        // vérif de l'existance de l'id
+        $verif = $bdd->prepare('SELECT * FROM author WHERE id=?');
+        $verif->execute([$id]);
+        if(!$don = $verif->fetch())
+        {
+            $verif->closeCursor();
+            header("LOCATION:authors.php");
+        }
+        $verif->closeCursor();
+
+        // supprimer les images des oeuvres liées à l'auteur avant de supprimer l'entrée dans la bdd (à faire)
+
+        // supprimer les oeuvres liées à l'auteur
+        $deleteWorks = $bdd->prepare("DELETE FROM works WHERE id_author=?");
+        $deleteWorks->execute([$id]);
+        $deleteWorks->closeCursor();
+
+        // supprimer l'auteur
+        $deleteAuthor = $bdd->prepare("DELETE FROM author WHERE id=?");
+        $deleteAuthor->execute([$id]);
+        $deleteWorks->closeCursor();
+
+        header("LOCATION:authors.php?deletesuccess=".$id);
+
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -35,6 +66,10 @@
                 {
                     echo "<div class='alert alert-warning'>Vous avez bien modifié l'auteur n°".$_GET['id']."</div>";
                 }
+                if(isset($_GET['deletesuccess']))
+                {
+                    echo "<div class='alert alert-danger'>Vous avez bien supprimé l'auteur n°".$_GET['deletesuccess']."</div>";
+                }
 
             ?>
             <a href="authorsAdd.php" class='btn btn-success'>Ajouter</a>
@@ -60,7 +95,7 @@
                                 echo "<td>".$donAuthors['birthdate']."</td>";
                                 echo "<td>";
                                     echo "<a href='authorsUpdate.php?id=".$donAuthors['id']."' class='btn btn-warning mx-2'>Modifier</a>";
-                                    echo "<a href='#' class='btn btn-danger mx-2'>Supprimer</a>";
+                                    echo "<a href='authors.php?delete=".$donAuthors['id']."' class='btn btn-danger mx-2'>Supprimer</a>";
                                 echo "</td>";
                             echo "</tr>";    
                         }
