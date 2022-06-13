@@ -62,8 +62,8 @@
                                 // echo "<td>".$don['firstname']." ".$don['lastname']."</td>";
                                 echo "<td>".$donWorks['afirst']." ".$donWorks['alast']."</td>";
                                 echo "<td>";
-                                    echo "<a href='#' class='btn btn-warning mx-2'>Modifier</a>";
-                                    echo "<a href='#' class='btn btn-danger mx-2'>Supprimer</a>";
+                                    echo "<a href='worksUpdate.php?id=".$donWorks['wid']."' class='btn btn-warning mx-2'>Modifier</a>";
+                                    echo "<a href='works.php?delete=".$donWorks['wid']."' class='btn btn-danger mx-2'>Supprimer</a>";
                                 echo "</td>";
                             echo "</tr>";    
                         }
