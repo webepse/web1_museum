@@ -26,6 +26,17 @@
     <main>
         <div class="container">
             <h1>Authors</h1>
+            <?php
+                if(isset($_GET['add']))
+                {
+                    echo "<div class='alert alert-success'>Vous avez bien ajouté un nouvel auteur</div>";
+                }
+                if(isset($_GET['update']) && isset($_GET['id']))
+                {
+                    echo "<div class='alert alert-warning'>Vous avez bien modifié l'auteur n°".$_GET['id']."</div>";
+                }
+
+            ?>
             <a href="authorsAdd.php" class='btn btn-success'>Ajouter</a>
             <table class="table table-hover">
                 <thead>

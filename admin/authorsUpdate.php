@@ -5,6 +5,7 @@
         header("LOCATION:index.php");
     }
 
+    /* tester si l'id est présent sinon la page ne peut pas fonctionner  */
     if(isset($_GET['id']))
     {
         $id=htmlspecialchars($_GET['id']);
@@ -12,6 +13,7 @@
         header("LOCATION:authors.php");
     }
 
+    // req à la bdd pour savoir si l'id existe bien
     require "../connexion.php";
 
     $req = $bdd->prepare("SELECT * FROM author WHERE id=?");
@@ -45,7 +47,7 @@
     ?>
     <main>
         <div class="container">
-            <h1>Add Author</h1>
+            <h1>Update Author</h1>
             <form action="treatmentAuthorsUpdate.php?id=<?= $don['id'] ?>" method="POST">
                 <div class='my-3'>
                     <label for="title">FirstName: </label>
@@ -60,7 +62,7 @@
                     <input type="date" name="birthdate" id="birthdate" value="<?= $don['birthdate'] ?>" class="form-control">
                 </div>
                 <div class="my-3">
-                    <input type="submit" value="Add" class="btn btn-primary">
+                    <input type="submit" value="Update" class="btn btn-warning">
                     <a href="authors.php" class="btn btn-secondary">Return</a>
                 </div>
             </form>

@@ -26,6 +26,16 @@
     <main>
         <div class="container">
             <h1>Works</h1>
+            <?php
+                  if(isset($_GET['add']))
+                  {
+                      echo "<div class='alert alert-success'>Vous avez bien ajouté une nouvelle oeuvre</div>";
+                  }
+                  if(isset($_GET['update']) && isset($_GET['id']))
+                  {
+                      echo "<div class='alert alert-warning'>Vous avez bien modifié l'oeuvre n°".$_GET['id']."</div>";
+                  }
+            ?>
             <a href="worksAdd.php" class='btn btn-success'>Ajouter</a>
             <table class="table table-hover">
                 <thead>
