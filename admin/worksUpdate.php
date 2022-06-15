@@ -109,6 +109,43 @@
                 }
             ?>
         </div>
+        <div class="container">
+                <h3>Les images associées</h3>
+                <a href="#" class="btn btn-primary">Ajouter</a>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>image</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            $images = $bdd->prepare("SELECT * FROM images WHERE id_works=?");
+                            $images->execute([$id]);
+                            while($donImages = $images->fetch())
+                            {
+                                echo '<tr>';
+                                    echo '<td>'.$donImages['id'].'</td>';
+                                    echo '<td>'.$donImages['file'].'</td>';
+                                    echo '<td>';
+                                        echo '<a href="worksUpdate.php?id='.$id.'&delete='.$donImages['id'].'" class="btn btn-danger">Supprimer</a>';
+                                    echo '</td>';
+                                echo '</tr>';
+
+                            }
+                            $images->closeCursor();
+
+                        ?>
+
+
+                    </tbody>
+
+
+                </table>
+
+        </div>
     </main>
     <?php
         include("partials/footer.php");
