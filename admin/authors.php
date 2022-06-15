@@ -22,7 +22,17 @@
         }
         $verif->closeCursor();
 
-        // supprimer les images des oeuvres liées à l'auteur avant de supprimer l'entrée dans la bdd (à faire)
+        // supprimer les images des oeuvres liées à l'auteur avant de supprimer l'entrée dans la bdd 
+        $reqWorks = $bdd->prepare("SELECT * FROM works WHERE id_author=?");
+        $reqWorks->execute([$id]);
+        while($donMyWorks = $reqWorks->fetch())
+        {
+            unlink("../images/".$donMyWorks['cover']);
+        }
+        $reqWorks->closeCursor();
+
+
+
 
         // supprimer les oeuvres liées à l'auteur
         $deleteWorks = $bdd->prepare("DELETE FROM works WHERE id_author=?");
